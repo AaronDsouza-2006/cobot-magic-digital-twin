@@ -1,0 +1,15 @@
+<mujoco model="pole">
+  <worldbody>
+    <body name="cart" pos="0 0 0.1">
+      <!-- <joint name="slider" type="slide" axis="1 0 0"/> -->
+      <geom type="box" size="0.2 0.1 0.05"/>
+      <body name="pole" pos="0 0 0.05">
+        <joint name="hinge" type="hinge" axis="0 1 0" range="-90 90"/>
+        <geom type="capsule" size="0.02" fromto="0 0 0 0 0 0.8"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <position name="hinge_ctrl" joint="hinge" kp="200" kv="200" ctrlrange="-1.57 1.57"/>
+  </actuator>
+</mujoco>

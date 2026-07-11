@@ -23,7 +23,7 @@ def joint_right_callback(msg):
     position = list(msg.position)
 
     position[2] *= -1
-    position[3], position[4] = position[4], position[]
+    position[3], position[4] = position[4], position[3]
     position[6] /= 2
     position.append(position[6])
     print(position)

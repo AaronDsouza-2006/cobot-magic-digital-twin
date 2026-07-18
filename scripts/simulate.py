@@ -2,7 +2,10 @@ import mujoco
 import mujoco.viewer
 import sys
 
-model_path = sys.argv[1]
+if len(sys.argv) == 2:
+    model_path = sys.argv[1]
+else:
+    model_path = "robots/mobile_aloha_sim/aloha_mujoco/aloha/meshes_mujoco/aloha_v1.xml"
 model = mujoco.MjModel.from_xml_path(model_path)
 data = mujoco.MjData(model)
 

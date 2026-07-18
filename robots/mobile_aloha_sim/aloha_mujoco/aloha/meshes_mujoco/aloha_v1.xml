@@ -61,7 +61,7 @@
       <joint type="free"/>
       <!-- <geom name = "dish" pos = "0 0 0" quat="0.707 0.707 0 0" type="mesh" mass="0.5" rgba=".4 0.28 0.2 1" friction="0.7 0.08 0.01" 
           solimp="0.95 0.98 0.01 0.5 6" solref="0.01 1" condim="4" margin="0.0" mesh="dish"/> -->
-      <geom name="dish_cylinder" pos = "0 0 0"type="cylinder" size="0.1 0.005" 
+      <geom name="dish" pos = "0 0 0"type="cylinder" size="0.1 0.005" 
         mass="0.5" rgba="0.5 0.37 0.28 1" friction="0.7 0.08 0.01" condim="4"
         solimp="0.99 0.999 0.001" solref="0.005 1"/>
     </body>

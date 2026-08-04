@@ -1,6 +1,7 @@
 import mujoco
 import mujoco.viewer
 import sys
+import numpy as np
 
 if len(sys.argv) == 2:
     model_path = sys.argv[1]

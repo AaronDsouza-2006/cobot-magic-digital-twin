@@ -4,6 +4,8 @@ import mujoco.viewer
 import rospy
 from sensor_msgs.msg import JointState
 from sensor_msgs.msg import Image
+from std_msgs.msg import Float64MultiArray 
+import numpy as np 
 
 xml_path= "/home/digital_twin/robots/mobile_aloha_sim/aloha_mujoco/aloha/meshes_mujoco/aloha_v1.xml"
 model = mujoco.MjModel.from_xml_path(xml_path)
@@ -34,15 +36,26 @@ def pos2msg(pos):
 class AlohaSim():
 
     def __init__(self):
-
         master_joint_topic = "/master/joint_right"
         sim_joint_topic = "/sim/joint_right"
         sim_image_topic = "sim_cam/color/image_raw"
+        object_pos_topic = "/object_positions"
         timer_period = 1.0/30 #30hz
+        self.object_names = {
+            "red_cube":      0,   
+            "purple_capsule": 7,  
+            "blue_sphere":   14,
+            "green_cylinder": 21, 
+            "orange_ellipsoid": 28, 
+            "brown_dish":    35,  
+        }
 
         rospy.Subscriber(master_joint_topic, JointState, self.joint_right_callback)
+        rospy.Subscriber(object_pos_topic, Float64MultiArray, self.object_pos_callback)  
+
         self.joint_pub = rospy.Publisher(sim_joint_topic, JointState, queue_size=20)
         self.image_pub = rospy.Publisher(sim_image_topic, Image, queue_size = 10)
+
         self.renderer = mujoco.Renderer(model, 480, 640)
         
         self.timer = rospy.Timer(rospy.Duration(timer_period), self.timer_callback)
@@ -75,6 +88,22 @@ class AlohaSim():
         self.joint_pub.publish(pos2msg(data.qpos))
 
         viewer.sync()
+
+    def object_pos_callback(self, msg): 
+        arr = np.array(msg.data)
+        if len(arr) < 12:
+            rospy.logwarn(f"Expected 12 values, got {len(arr)}")
+            return
+        
+        for i, (name, base_idx) in enumerate(self.object_names.items()):
+            if i >= 6:
+                break
+            x, y = arr[2*i], arr[2*i + 1]
+            data.qpos[base_idx + 0] = x
+            data.qpos[base_idx + 1] = y   
+
+        mujoco.mj_forward(model, data)
+
 
 def main():
     rospy.init_node("simulation_node")

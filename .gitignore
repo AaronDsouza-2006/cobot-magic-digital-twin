@@ -10,3 +10,6 @@
 *.pkl
 /Reinforcement_Learning/__pycache__
 /Reinforcement_Learning/MUJOCO_LOG.TXT
+/.venv
+/.vscode
+/mujoco

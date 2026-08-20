@@ -36,7 +36,7 @@
     <!-- Red Cube (IMPORTANT) -->
     <body pos="0.5 0 0.795">
       <joint type="free"/>
-      <geom name="object" pos="0 0 0" size="0.025 0.025 0.025" type="box" rgba="1.5 0.1 0.1 1" friction="0.7 0.08 0.01" 
+      <geom name="cube" pos="0 0 0" size="0.025 0.025 0.025" type="box" rgba="1.5 0.1 0.1 1" friction="0.7 0.08 0.01" 
          solimp="0.97 0.99 0.01 0.5 6" solref="0.005 1" condim="4" margin="0.0" />
     </body>
     <!-- Brown Dish (IMPORTANT) -->

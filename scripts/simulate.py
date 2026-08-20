@@ -16,6 +16,6 @@ try:
             for _ in range(10):
                 mujoco.mj_step(model, data)
             viewer.sync()
-
+            
 except KeyboardInterrupt:
     sys.exit(0)

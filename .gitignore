@@ -3,3 +3,10 @@
 /robots/new_cobot
 /robots/unitree_mujoco
 /scripts/trash
+/roboclaw_ws
+/Reinforcement_Learning/checkpoints
+/Reinforcement_Learning/notebooks
+/Reinforcement_Learning/trash
+*.pkl
+/Reinforcement_Learning/__pycache__
+/Reinforcement_Learning/MUJOCO_LOG.TXT
